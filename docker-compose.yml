@@ -1,8 +1,13 @@
+# Docker Compose for MessMate Development
+# Usage: docker-compose up -d
+# For production: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 services:
+  # Backend API (FastAPI)
   backend:
-    build: 
+    build:
       context: ./backend
+      dockerfile: Dockerfile
     container_name: messmate_backend
     ports:
       - "8000:8000"
@@ -10,23 +15,49 @@ services:
       - ENVIRONMENT=development
       - MONGO_URL=mongodb://mongodb:27017
       - DB_NAME=messmate_dev
-      - JWT_SECRET=supersecret_dev_key_change_me
+      - JWT_SECRET=${JWT_SECRET:-supersecret_dev_key_change_me}
       - JWT_ALGORITHM=HS256
+      - JWT_EXPIRE_MINUTES=10080
       - REDIS_URL=redis://redis:6379
+      - FRONTEND_URL=http://localhost:8081
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
     depends_on:
-      - mongodb
-      - redis
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 
+  # MongoDB Database
   mongodb:
-    image: mongo:6.0
+    image: mongo:7.0
     container_name: messmate_mongo
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=messmate_dev
     volumes:
       - messmate_mongo_data:/data/db
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
+  # Redis (for caching/sessions)
   redis:
     image: redis:7-alpine
     container_name: messmate_redis
@@ -35,7 +66,43 @@ services:
     volumes:
       - messmate_redis_data:/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Frontend Development (Expo)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: messmate_frontend
+    ports:
+      - "8081:8081"
+      - "19000:19000"
+      - "19001:19001"
+      - "19002:19002"
+    environment:
+      - EXPO_PUBLIC_BACKEND_URL=http://localhost:8000
+      - EXPO_PUBLIC_API_URL=http://localhost:8000
+      - EXPO_PUBLIC_ENV=development
+    env_file:
+      - ./frontend/.env
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.expo
+    depends_on:
+      - backend
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
 
 volumes:
   messmate_mongo_data:
   messmate_redis_data:
+
+networks:
+  default:
+    name: messmate_network
