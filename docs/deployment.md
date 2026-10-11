@@ -1,46 +1,67 @@
-# MessMate Deployment Guide
+# 🚀 MessMate — Production Deployment Guide
 
-This guide covers deploying MessMate to a production Ubuntu server using Docker Compose.
+This guide covers deployment strategies for MessMate across Cloud (Render), Docker, and Mobile (Android APK).
 
-## Prerequisites
-- An Ubuntu 22.04+ Server
-- Domain Name pointed to the server's IP address
-- Docker and Docker Compose installed
+---
 
-## Step 1: Environment Variables
-Create a `.env` file in the root of the project:
-```env
-ENVIRONMENT=production
-MONGO_URL=mongodb://mongodb:27017
-DB_NAME=messmate_prod
-JWT_SECRET=your-secure-random-string
-JWT_ALGORITHM=HS256
-REDIS_URL=redis://redis:6379
+## 1. Cloud Backend Deployment (Render)
 
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-FROM_EMAIL=your-email@gmail.com
-FROM_NAME="MessMate Support"
+The repository includes a ready-to-use [`render.yaml`](../render.yaml) blueprint:
+
+```yaml
+services:
+  - type: web
+    name: messmate-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
 ```
 
-## Step 2: Bootstrapping the Cluster
-Run the orchestrated services:
+### Steps:
+1. Connect your GitHub repository (`abu-devel0per/messmate`) in the [Render Dashboard](https://dashboard.render.com).
+2. Choose **New > Blueprint** and link the repo.
+3. Configure the environment variables (`MONGO_URL` pointing to MongoDB Atlas, `SMTP_*`, and `RAZORPAY_*`).
+4. Trigger manual deploy or enable auto-deploy on `main` branch.
+
+---
+
+## 2. Containerized Deployment (Docker & Compose)
+
+Deploy both backend and database using Docker Compose:
+
 ```bash
-docker-compose up -d --build
-```
-This will start MongoDB, Redis, and the FastAPI backend.
-
-## Step 3: Seeding the Database
-To configure the initial Super Admin account, run the seed script from inside the backend container:
-```bash
-docker exec -it messmate_backend python backend/seed.py
+# Build and launch containers in background
+docker compose up -d --build
 ```
 
-## Step 4: Reverse Proxy & HTTPS (Nginx)
-Configure Nginx to proxy `api.messmate.app` to port `8000`.
-Then use Certbot to secure it:
+The [`docker-compose.yml`](../docker-compose.yml) handles:
+* MongoDB service on port `27017` with persistent volumes.
+* FastAPI backend service on port `8000` with auto-restart policies.
+
+---
+
+## 3. Mobile Deployment & Android Release Builds
+
+### Building Standalone APK with EAS (Expo Application Services):
 ```bash
-sudo certbot --nginx -d api.messmate.app
+# Log in to Expo
+npx eas login
+
+# Configure project ID
+npx eas project:init
+
+# Build Android Release APK
+npx eas build -p android --profile production
 ```
+
+### Direct Distribution:
+Release APK files (`MessMate-Release.apk`) can be directly hosted or shared using the included Cloudflare tunnel script:
+```powershell
+python start_apk_share.py
+```
+This generates a public Cloudflare download URL and a scannable QR code in your terminal.

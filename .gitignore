@@ -167,3 +167,6 @@ firebase-adminsdk.json
 *.log
 scratch/
 *.exe
+*_cf.txt
+apk_*.txt
+backend_*.txt
