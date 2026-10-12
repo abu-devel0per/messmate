@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MessMate — the open-source dining OS</title>
+  <meta name="description" content="MessMate is an open-source, API-first dining operations platform for hostels, campuses and canteens. Meal RSVPs, predictive cook quantities, wastage ledgers. Self-host it or join the MessMate Cloud beta." />
+  <link rel="canonical" href="https://themessmate.com/" />
+  <meta name="theme-color" content="#F6F1E7" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MessMate" />
+  <meta property="og:url" content="https://themessmate.com/" />
+  <meta property="og:title" content="MessMate — the open-source dining OS" />
+  <meta property="og:description" content="An open-source, API-first dining operations platform for hostels and campus canteens. Meal RSVPs, predictive cook quantities, wastage ledgers. Self-host it or join MessMate Cloud." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MessMate — the open-source dining OS" />
+  <meta name="twitter:description" content="An open-source, API-first dining operations platform. Self-host it free, or join MessMate Cloud in early access." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E2A22'/%3E%3Cpath d='M7 15h18a9 9 0 0 1-18 0z' fill='%23F2EDE2'/%3E%3Cpath d='M12 13c0-2 1.5-2.5 1.5-4.5M16 13c0-2 1.5-2.5 1.5-4.5M20 13c0-2 1.5-2.5 1.5-4.5' stroke='%23D96C3F' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="siteNav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="MessMate home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M7 15h18a9 9 0 0 1-18 0z" fill="var(--paper)"/><path d="M12 13c0-2 1.5-2.5 1.5-4.5M16 13c0-2 1.5-2.5 1.5-4.5M20 13c0-2 1.5-2.5 1.5-4.5" stroke="var(--terracotta)" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+        <span class="brand-word">MessMate</span>
+        <span class="brand-tag">open dining OS</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#platform">Platform</a>
+        <a href="#day">A day on</a>
+        <a href="#developers">Developers</a>
+        <a href="#deploy">Deploy</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="gh-link" href="https://github.com/abu-devel0per/messmate" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true" width="17" height="17"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          <span>Source</span>
+        </a>
+        <a class="btn btn-primary btn-sm" href="#deploy">Join the beta</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal><span class="tick"></span>Open source · MIT — Cloud in private beta</p>
+          <h1 class="hero-title" data-reveal>
+            The open-source <em>operating system</em> for institutional dining.
+          </h1>
+          <p class="hero-sub" data-reveal>
+            MessMate turns meal RSVPs, cook quantities and wastage ledgers into
+            software. Self-host it in your campus basement, or join the private
+            beta of <strong>MessMate Cloud</strong> — hosted, multi-tenant and built API-first.
+          </p>
+          <div class="hero-actions" data-reveal>
+            <a class="btn btn-primary" href="#deploy">Join the cloud beta</a>
+            <a class="btn btn-ghost" href="https://github.com/abu-devel0per/messmate" target="_blank" rel="noopener">Browse the source</a>
+          </div>
+          <p class="hero-clone" data-reveal><span>$</span> git clone https://github.com/abu-devel0per/messmate.git</p>
+          <ul class="hero-meta" data-reveal>
+            <li><strong>v0.3</strong> pre-1.0</li>
+            <li><strong>4</strong> services / day instrumented</li>
+            <li><strong>1</strong> active device per account, enforced</li>
+          </ul>
+        </div>
+
+        <!-- Interactive kitchen demo -->
+        <aside class="demo-wrap" data-reveal>
+          <div class="demo-card" aria-label="Interactive demo: toggle meals and watch kitchen numbers change">
+            <div class="demo-head">
+              <div>
+                <p class="demo-eyebrow">Kitchen feed · demo</p>
+                <h3>Today's service</h3>
+              </div>
+              <div class="live-chip"><span class="live-dot" aria-hidden="true"></span>live</div>
+            </div>
+
+            <div class="demo-meals" role="group" aria-label="Meal RSVP toggles">
+              <button class="meal is-on" type="button" data-meal="breakfast" data-count="214" data-grams="350" aria-pressed="true">
+                <span class="meal-name">Breakfast<em>07:30 · cutoff 06:15</em></span>
+                <span class="meal-state" aria-hidden="true"><i></i></span>
+                <span class="meal-count"><b>214</b> in</span>
+              </button>
+              <button class="meal is-on" type="button" data-meal="lunch" data-count="232" data-grams="550" aria-pressed="true">
+                <span class="meal-name">Lunch<em>12:30 · cutoff 09:45</em></span>
+                <span class="meal-state" aria-hidden="true"><i></i></span>
+                <span class="meal-count"><b>232</b> in</span>
+              </button>
+              <button class="meal" type="button" data-meal="snacks" data-count="88" data-grams="150" aria-pressed="false">
+                <span class="meal-name">Snacks<em>16:30 · cutoff 15:15</em></span>
+                <span class="meal-state" aria-hidden="true"><i></i></span>
+                <span class="meal-count"><b>88</b> in</span>
+              </button>
+              <button class="meal is-on" type="button" data-meal="dinner" data-count="226" data-grams="500" aria-pressed="true">
+                <span class="meal-name">Dinner<em>20:00 · cutoff 18:45</em></span>
+                <span class="meal-state" aria-hidden="true"><i></i></span>
+                <span class="meal-count"><b>226</b> in</span>
+              </button>
+            </div>
+
+            <div class="demo-readout">
+              <div class="readout-row"><span>Expected diners · all services</span><strong id="rDiners">—</strong></div>
+              <div class="readout-row"><span>Cook sheet · 8% buffer</span><strong id="rCook">—</strong></div>
+              <div class="readout-row accent"><span>Not cooked, vs. cooking blind</span><strong id="rSaved">—</strong></div>
+            </div>
+
+            <p class="demo-foot">Next cutoff — <span id="rNextMeal">Lunch</span> in <span class="mono" id="rCountdown">--:--:--</span></p>
+          </div>
+          <p class="demo-hint">Flip a meal. That cause&nbsp;→&nbsp;effect is the whole product.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>FastAPI · Python 3.11</span><span>React Native 0.81</span><span>Expo 54</span>
+        <span>MongoDB · Motor async</span><span>WebSockets</span><span>Expo Router 6</span>
+        <span>FCM push</span><span>Razorpay</span><span>Docker</span><span>MIT License</span>
+      </div>
+    </div>
+
+    <!-- ============ PROBLEM ============ -->
+    <section class="problem section" id="problem">
+      <div class="shell">
+        <p class="sec-index" data-reveal>01 — The problem</p>
+        <h2 class="editorial" data-reveal>Institutional kitchens cook for <em>a number nobody wrote down.</em></h2>
+        <div class="problem-cols">
+          <div class="problem-note" data-reveal>
+            <p>
+              Conventional mess halls prepare a fixed quantity regardless of who actually
+              shows up. When the hostel empties for the weekend, the rice doesn't know.
+            </p>
+          </div>
+          <div class="problem-stats" data-reveal>
+            <div class="pstat">
+              <span class="pstat-k mono">OVERCOOK</span>
+              <p>Food waste, financial loss and disposal cost when quantity is a guess.</p>
+            </div>
+            <div class="pstat">
+              <span class="pstat-k mono">UNDERCOOK</span>
+              <p>Late arrivals find empty serving trays — the inverse failure of the same guess.</p>
+            </div>
+            <div class="pstat">
+              <span class="pstat-k mono">PAPER ROSTER</span>
+              <p>Manual attendance drifts, billing disputes grow, and shared accounts eat for free.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLATFORM PILLARS ============ -->
+    <section class="pillars section" id="platform">
+      <div class="shell">
+        <p class="sec-index" data-reveal>02 — The platform</p>
+        <div class="sec-head">
+          <h2 class="editorial" data-reveal>One system of record,<br /><em>from RSVP to ledger.</em></h2>
+          <p class="sec-sub" data-reveal>MessMate is an operations platform, not an attendance app. Four engines work the same shift, on the same data.</p>
+        </div>
+
+        <div class="pillar-grid">
+          <article class="pillar" data-reveal>
+            <span class="pillar-no mono">E·01</span>
+            <h3>RSVP & cutoff engine</h3>
+            <p>Students opt in or out of each meal before a strict cutoff, with live countdowns and push reminders when the window is closing.</p>
+            <p class="pillar-foot mono">PUT /api/student/today</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <span class="pillar-no mono">E·02</span>
+            <h3>Predictive cook quantities</h3>
+            <p>RSVP headcount becomes raw ingredient weights — rice, dal, flour, curries — plus a configurable buffer margin for the kitchen.</p>
+            <p class="pillar-foot mono">GET /api/admin/cooking-quantities</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <span class="pillar-no mono">E·03</span>
+            <h3>Wastage ledger</h3>
+            <p>Cooked vs. consumed vs. disposed, weighed in kilograms, with percentage and monetary loss computed automatically per meal.</p>
+            <p class="pillar-foot mono">POST /api/admin/wastage</p>
+          </article>
+          <article class="pillar" data-reveal>
+            <span class="pillar-no mono">E·04</span>
+            <h3>Single-device sessions</h3>
+            <p>Server-enforced session rotation: a new login revokes the old token at the JWT level. Account sharing dies quietly.</p>
+            <p class="pillar-foot mono">sid claim · session_invalidated</p>
+          </article>
+          <article class="pillar pillar-wide" data-reveal>
+            <div>
+              <span class="pillar-no mono">E·05</span>
+              <h3>Live floor operations</h3>
+              <p>WebSocket headcount ticks during service, roster verification queues onboard students, and campus-wide broadcasts land via FCM.</p>
+            </div>
+            <p class="pillar-foot mono">WebSocket manager · FCM dispatcher</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SCROLLYTELLING: A DAY ============ -->
+    <section class="day section-dark" id="day">
+      <div class="shell">
+        <p class="sec-index light" data-reveal>03 — Scrollytelling</p>
+        <div class="day-grid">
+          <div class="day-sticky">
+            <p class="day-label mono">One day on MessMate</p>
+            <p class="day-clock" id="dayClock">06:15</p>
+            <p class="day-phase" id="dayPhase">The cutoff</p>
+            <p class="day-status" id="dayStatus">RSVPs freeze for breakfast. The headcount locks and the buffer is applied.</p>
+            <div class="day-bar" aria-hidden="true"><span id="dayBarFill"></span></div>
+            <p class="day-bar-label mono"><span>05:30</span><span>22:00</span></p>
+          </div>
+
+          <ol class="day-steps" id="daySteps">
+            <li class="day-step" data-clock="05:30" data-phase="Kitchen opens" data-status="Today's cyclical menu is published. RSVP windows are open for all four services.">
+              <span class="step-time mono">05:30</span>
+              <h3>Kitchen opens</h3>
+              <p>The menu for the day is published to every student's home screen — with dietary indicators for veg, non-veg and special diets.</p>
+            </li>
+            <li class="day-step" data-clock="06:15" data-phase="The cutoff" data-status="RSVPs freeze for breakfast. The headcount locks and the buffer is applied.">
+              <span class="step-time mono">06:15</span>
+              <h3>Breakfast cutoff</h3>
+              <p>Opt-ins freeze. The RSVP count becomes a locked headcount, and the cooking quantity estimator converts it into kilograms with a safety buffer.</p>
+            </li>
+            <li class="day-step" data-clock="09:45" data-phase="Lunch window" data-status="A block leaves for a campus event. The manager watches the live count drop.">
+              <span class="step-time mono">09:45</span>
+              <h3>Lunch cutoff</h3>
+              <p>Students heading off campus toggle out before the window closes. The manager's dashboard shows expected diners vs. absentees in real time.</p>
+            </li>
+            <li class="day-step" data-clock="12:30" data-phase="Service" data-status="WebSocket headcount ticks as verified students check in at the counter.">
+              <span class="step-time mono">12:30</span>
+              <h3>Service, instrumented</h3>
+              <p>Attendance is verified at the counter and a live WebSocket headcount ticks on the manager's screen — no clipboards, no shared logins.</p>
+            </li>
+            <li class="day-step" data-clock="15:00" data-phase="The weigh-in" data-status="Leftovers hit the scale. The wastage ledger computes percentage and rupee loss.">
+              <span class="step-time mono">15:00</span>
+              <h3>The weigh-in</h3>
+              <p>Prepared weight and leftover weight are logged in kilograms. The wastage ledger auto-computes waste percentage and monetary loss for the meal.</p>
+            </li>
+            <li class="day-step" data-clock="20:30" data-phase="The roll-up" data-status="Billing accruals update, and tomorrow's menu broadcast goes out over FCM.">
+              <span class="step-time mono">20:30</span>
+              <h3>The roll-up</h3>
+              <p>Monthly mess-fee accruals update through the billing service, and a broadcast for tomorrow's special lands in every notification shade via FCM.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEVELOPERS ============ -->
+    <section class="dev section" id="developers">
+      <div class="shell">
+        <p class="sec-index" data-reveal>04 — For developers</p>
+        <div class="sec-head">
+          <h2 class="editorial" data-reveal>API-first.<br /><em>Multi-tenant by design.</em></h2>
+          <p class="sec-sub" data-reveal>The React Native apps are just the reference client. Everything below them is a documented, async API you can build your own front-end against.</p>
+        </div>
+
+        <div class="dev-grid">
+          <div class="terminal" data-reveal>
+            <div class="term-bar" aria-hidden="true"><span></span><span></span><span></span><em>messmate — zsh</em></div>
+            <pre class="term-body"><code><span class="t-cmd">$ docker compose up</span>
+<span class="t-dim">✔ backend      FastAPI 0.100+        :8000</span>
+<span class="t-dim">✔ mongo        MongoDB · Motor async :27017</span>
+
+<span class="t-cmd">$ curl -s localhost:8000/api/student/today \</span>
+<span class="t-cmd">    -H "Authorization: Bearer $JWT"</span>
+<span class="t-out">{
+  "meals": [
+    { "name": "lunch",   "opted_in": true,  "cutoff": "09:45" },
+    { "name": "dinner",  "opted_in": false, "cutoff": "18:45" }
+  ],
+  "headcount_live": 232,
+  "session": { "device_bound": true }
+}</span></code></pre>
+          </div>
+
+          <div class="api-card" data-reveal>
+            <div class="api-head"><span class="mono">REST surface</span><span class="mono dim">/docs & /redoc included</span></div>
+            <ul class="api-list">
+              <li><span class="mchip post">POST</span><span class="api-path mono">/api/auth/login</span><span class="api-desc">JWT issue + session rotation</span></li>
+              <li><span class="mchip get">GET</span><span class="api-path mono">/api/student/today</span><span class="api-desc">Today's menu & opt-in state</span></li>
+              <li><span class="mchip put">PUT</span><span class="api-path mono">/api/student/today</span><span class="api-desc">Toggle meals before cutoff</span></li>
+              <li><span class="mchip get">GET</span><span class="api-path mono">/api/admin/dashboard</span><span class="api-desc">Live headcount & summary</span></li>
+              <li><span class="mchip get">GET</span><span class="api-path mono">/api/admin/cooking-quantities</span><span class="api-desc">Ingredient weights from RSVPs</span></li>
+              <li><span class="mchip post">POST</span><span class="api-path mono">/api/admin/wastage</span><span class="api-desc">Log kg + computed loss</span></li>
+              <li><span class="mchip post">POST</span><span class="api-path mono">/api/notifications/broadcast</span><span class="api-desc">FCM push to all students</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dev-notes" data-reveal>
+          <div class="dnote"><h4>Multi-tenant router</h4><p>A resilient DB router (<span class="mono">db_router.py</span>) isolates every campus's data while one deployment serves them all.</p></div>
+          <div class="dnote"><h4>Async end to end</h4><p>FastAPI + Motor + WebSockets keep headcounts live under load. Interactive Swagger at <span class="mono">/docs</span>.</p></div>
+          <div class="dnote"><h4>Tested & typed</h4><p>Pytest backend suites, E2E user-journey scripts, TypeScript front-end. CI-friendly from day one.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DEPLOY ============ -->
+    <section class="deploy section" id="deploy">
+      <div class="shell">
+        <p class="sec-index" data-reveal>05 — Two ways to run it</p>
+        <div class="sec-head">
+          <h2 class="editorial" data-reveal>Self-host it free.<br /><em>Or let us carry the pager.</em></h2>
+          <p class="sec-sub" data-reveal>MessMate is early-stage: the core is MIT-licensed and stable enough to pilot. The hosted cloud is in a private beta with a short waitlist.</p>
+        </div>
+
+        <div class="deploy-grid">
+          <article class="plan" data-reveal>
+            <div class="plan-head">
+              <span class="plan-chip mono">Community</span>
+              <h3>Self-hosted</h3>
+              <p class="plan-price"><strong>₹0</strong> / forever, MIT</p>
+            </div>
+            <ul class="plan-list">
+              <li>Full stack — FastAPI, Expo apps, deploy scripts</li>
+              <li>Your MongoDB, your domain, your data</li>
+              <li>One-click Windows launcher & Docker Compose</li>
+              <li>Community support via GitHub issues</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="https://github.com/abu-devel0per/messmate" target="_blank" rel="noopener">Read the deploy guide</a>
+            <p class="plan-foot mono">docker compose up -d</p>
+          </article>
+
+          <article class="plan plan-hot" data-reveal>
+            <div class="plan-head">
+              <span class="plan-chip mono hot">Private beta</span>
+              <h3>MessMate Cloud</h3>
+              <p class="plan-price"><strong>Free</strong> during beta</p>
+            </div>
+            <ul class="plan-list">
+              <li>Hosted, multi-tenant — onboarding in minutes</li>
+              <li>Push notifications & Razorpay wired for you</li>
+              <li>Managed backups, uptime and upgrades</li>
+              <li>Direct line to the team while we're small</li>
+            </ul>
+            <a class="btn btn-primary btn-block" href="mailto:beta@themessmate.com?subject=MessMate%20Cloud%20beta%20waitlist">Join the waitlist</a>
+            <p class="plan-foot mono">no card · no lock-in · export anytime</p>
+          </article>
+        </div>
+        <p class="deploy-note" data-reveal>Early-stage means honest pricing: the beta is free, and self-hosting stays free forever. We'd rather earn the upgrade than trap it.</p>
+      </div>
+    </section>
+
+    <!-- ============ ROADMAP ============ -->
+    <section class="roadmap section" id="roadmap">
+      <div class="shell">
+        <p class="sec-index" data-reveal>06 — The ledger</p>
+        <h2 class="editorial" data-reveal>Shipped, in the open.</h2>
+        <ul class="changelog">
+          <li class="change" data-reveal>
+            <span class="ch-status mono done">shipped</span>
+            <span class="ch-ver mono">v0.1</span>
+            <div><h3>Foundations</h3><p>JWT auth with server-enforced single-device sessions, multi-tenant DB router, student & admin apps.</p></div>
+          </li>
+          <li class="change" data-reveal>
+            <span class="ch-status mono done">shipped</span>
+            <span class="ch-ver mono">v0.2</span>
+            <div><h3>The meal engine</h3><p>Per-meal RSVPs, cutoff windows, cyclical menus and the predictive cooking-quantity estimator.</p></div>
+          </li>
+          <li class="change" data-reveal>
+            <span class="ch-status mono done">shipped</span>
+            <span class="ch-ver mono">v0.3</span>
+            <div><h3>Accountability layer</h3><p>Wastage ledger with cost loss, Razorpay billing, FCM broadcasts and the live WebSocket headcount.</p></div>
+          </li>
+          <li class="change" data-reveal>
+            <span class="ch-status mono now">now</span>
+            <span class="ch-ver mono">beta</span>
+            <div><h3>MessMate Cloud</h3><p>Private-beta hosted platform. Onboarding the first campuses from the waitlist, slowly and carefully.</p></div>
+          </li>
+          <li class="change" data-reveal>
+            <span class="ch-status mono next">next</span>
+            <span class="ch-ver mono">v0.4</span>
+            <div><h3>On the workbench</h3><p>iOS via TestFlight, offline-first kiosk mode, and a public analytics API for campus dashboards.</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="faq section" id="faq">
+      <div class="shell faq-shell">
+        <p class="sec-index" data-reveal>07 — Questions</p>
+        <h2 class="editorial" data-reveal>Asked, answered.</h2>
+        <div class="faq-list" data-reveal>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Is MessMate really open source?</span><span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a"><p>Yes — the whole stack. The FastAPI backend, the React Native / Expo clients, and the deploy scripts are MIT-licensed. Read it, fork it, run it, ship it.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>Do I need MessMate Cloud to use it?</span><span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a"><p>No. Self-hosting is the primary path: a MongoDB instance and <span class="mono">docker-compose up</span> gets you a working deployment. The cloud exists for teams who'd rather not carry the pager.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>What does "multi-tenant" actually mean here?</span><span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a"><p>One deployment can serve many campuses. A resilient database router isolates each tenant's data, so a college, its hostels and its PGs share infrastructure without sharing data.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>How are payments and billing handled?</span><span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a"><p>Razorpay subscriptions and invoicing are built in for mess fees. Don't like Razorpay? The billing service is one module — fork it and swap the provider.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false">
+              <span>How do I contribute?</span><span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a"><p>Good first issues are labeled in the repo. Backend is Python (pytest), front-end is TypeScript. Star it, open a PR, or just tell us what your mess does that ours doesn't.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="cta" id="cta">
+      <div class="shell cta-inner">
+        <p class="cta-eyebrow mono" data-reveal>Applications open · limited pilot slots</p>
+        <h2 class="cta-title" data-reveal>Cook for the people<br /><em>who actually show up.</em></h2>
+        <div class="cta-actions" data-reveal>
+          <a class="btn btn-primary btn-lg" href="mailto:beta@themessmate.com?subject=MessMate%20Cloud%20beta%20waitlist">Join the cloud beta</a>
+          <a class="btn btn-outline-light btn-lg" href="https://github.com/abu-devel0per/messmate" target="_blank" rel="noopener">Read the source</a>
+        </div>
+        <p class="cta-sub" data-reveal>MessMate Cloud · private beta · self-hosted core under MIT, always.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M7 15h18a9 9 0 0 1-18 0z" fill="var(--ink)"/><path d="M12 13c0-2 1.5-2.5 1.5-4.5M16 13c0-2 1.5-2.5 1.5-4.5M20 13c0-2 1.5-2.5 1.5-4.5" stroke="var(--terracotta)" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+          <span class="brand-word">MessMate</span>
+        </a>
+        <p>The open-source dining OS for hostels, campuses and canteens.</p>
+      </div>
+      <nav class="foot-col" aria-label="Project">
+        <h4 class="mono">Project</h4>
+        <a href="https://github.com/abu-devel0per/messmate" target="_blank" rel="noopener">GitHub repository</a>
+        <a href="https://github.com/abu-devel0per/messmate/blob/main/README.md" target="_blank" rel="noopener">Documentation</a>
+        <a href="#developers">API reference</a>
+        <a href="#roadmap">Changelog</a>
+      </nav>
+      <nav class="foot-col" aria-label="Platform">
+        <h4 class="mono">Platform</h4>
+        <a href="#deploy">MessMate Cloud beta</a>
+        <a href="#deploy">Self-hosting</a>
+        <a href="#platform">Security model</a>
+      </nav>
+      <nav class="foot-col" aria-label="Legal">
+        <h4 class="mono">Legal</h4>
+        <a href="https://github.com/abu-devel0per/messmate/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+        <a href="https://github.com/abu-devel0per/messmate/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener">Code of conduct</a>
+        <a href="https://github.com/abu-devel0per/messmate/blob/main/SECURITY.md" target="_blank" rel="noopener">Security policy</a>
+      </nav>
+    </div>
+    <div class="shell foot-bottom">
+      <p>© 2026 MessMate contributors · MIT License</p>
+      <p class="mono">FastAPI + Expo · built for campus kitchens</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

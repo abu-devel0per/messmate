@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://themessmate.com/sitemap.xml
